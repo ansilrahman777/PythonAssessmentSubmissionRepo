@@ -1,6 +1,10 @@
+import os
+from dotenv import load_dotenv
 import requests
 
-GITHUB_TOKEN ='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'
+load_dotenv()
+
+GITHUB_TOKEN = os.getenv('GITHUB_TOKEN')
 
 def search_repositories(query):
 
@@ -16,7 +20,7 @@ def search_repositories(query):
         repositories = data.get('items', [])
         
         return repositories
-        
+
     except requests.exceptions.RequestException as e:
         print("Error:", e)
         return []
