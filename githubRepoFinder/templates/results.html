@@ -1,24 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Results</title>
-</head>
-<body>
-    <h1>Search Results</h1>
-    <p>Results for: {{ query }}</p>
-    <ul>
-        {% for repo in repositories %}
-            <li>
-                <strong>Name:</strong> {{ repo.name }}<br>
-                <strong>Owner:</strong> {{ repo.owner.login }}<br>
-                <strong>Description:</strong> {{ repo.description }}<br>
-                <strong>Stars:</strong> {{ repo.stargazers_count }}<br>
-                <strong>Forks:</strong> {{ repo.forks_count }}<br>
-                <strong>URL:</strong> <a href="{{ repo.html_url }}">{{ repo.html_url }}</a><br>
-            </li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}Search{% endblock title %}
+
+{% block body %}
+<h1>Search Results</h1>
+<p>Results for: {{ query }}</p>
+<ul>
+    {% for repo in repositories %}
+        <li>
+            <strong>Name:</strong> {{ repo.name }}<br>
+            <strong>Owner:</strong> {{ repo.owner.login }}<br>
+            <strong>Description:</strong> {{ repo.description }}<br>
+            <strong>Stars:</strong> {{ repo.stargazers_count }}<br>
+            <strong>Forks:</strong> {{ repo.forks_count }}<br>
+            <strong>URL:</strong> <a href="{{ repo.html_url }}">{{ repo.html_url }}</a><br>
+        </li>
+    {% endfor %}
+</ul>
+<h4>end of result</h4>
+{% endblock body %}

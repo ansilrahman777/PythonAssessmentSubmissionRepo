@@ -1,18 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub Search</title>
-</head>
-<body>
-    <h1>GitHub Search</h1>
-    {% if error %}
-        <p>{{ error }}</p>
-    {% endif %}
-    <form action="{% url 'search' %}" method="GET">
-        <input type="text" name="q" placeholder="Search Repo">
-        <button type="submit">Search</button>
-    </form>
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}Home{%endblock title %}
+{% block body %}
+<section class="h-screen">
+    <div class="text-center mt-16">
+        <h1 class="text-4xl font-bold tracking-tight font-sans text-white sm:text-6xl">SEARCH REPOSITORIES</h1>
+        <p class="mt-6 text-lg leading-9 text-white text-balance px-5">
+            Welcome to our GitHub Repository Search app! Easily search for GitHub repositories by name and view their details.
+            <br> 
+            Find trending projects and explore popular ones quickly and effortlessly.
+        </p>
+        <div class="mt-10 flex items-center justify-center gap-x-6">
+            <form action="{% url 'search' %}" method="GET" class="flex items-center max-w-sm mx-auto">   
+                {% if error %}
+                    <p>{{ error }}</p>
+                {% endif %}
+                <input type="text" name="q" placeholder="Search Repo" class="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-64 ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+                <button type="submit" class="p-2.5 ms-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                    </svg>
+                    <span class="sr-only">Search</span>
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock body %}

@@ -20,5 +20,5 @@ def search(request):
         # Render the results.html template with the repositories and query
         return render(request, 'results.html', {'repositories': repositories, 'query': query})
     else:
-        # Render the search.html template if there is no query
-        return render(request, 'search.html')
+        # Render the home.html template if there is no query
+        return render(request, 'home.html')
