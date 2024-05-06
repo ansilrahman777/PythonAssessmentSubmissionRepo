@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
+from django.http import HttpResponse
 from .utils import search_repositories, get_repository_details
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from .models import Repository
 
 # View function for rendering the home page
 def home(request):
@@ -35,9 +37,33 @@ def search(request):
         # Render the home.html template if there is no query
         return render(request, 'home.html')
 
+
 def repository_details(request, repository_id):
     # Get details of the repository by its ID
     repository = get_repository_details(repository_id)
     
-    # Render the repository_details.html template with the repository details
-    return render(request, 'repos_details.html', {'repository': repository})
+    # If repository details are found
+    if repository:
+        # Save repository details to the database
+        repo_obj, created = Repository.objects.get_or_create(
+            name=repository['name'],
+            owner=repository['owner']['login'],
+            description=repository['description'],
+            html_url=repository['html_url'],
+            stargazers_count=repository['stargazers_count'],
+            watchers_count=repository['watchers_count'],
+            forks_count=repository['forks_count'],
+        )
+        # Check if the repository was newly created or already exists
+        if created:
+            message = "Repository details saved to the database."
+            print("Repository details saved to the database.")
+        else:
+            message = "Repository details already exist in the database."
+            print("Repository details already exist in the database.")
+    else:
+        message = "Repository details not found."
+        print( "Repository details not found.")
+
+    # Render the repository_details.html template with the repository details and message
+    return render(request, 'repos_details.html', {'repository': repository, 'message': message})
