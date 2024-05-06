@@ -8,7 +8,6 @@ from .models import Repository
 def home(request):
     # Render the home.html template
     return render(request, 'home.html')
-
 # View function for handling search requests
 def search(request):
     # Get the search query from the request
@@ -18,6 +17,12 @@ def search(request):
     if query:
         # Search repositories using the query
         repositories = search_repositories(query)
+        
+        # If no repositories found, set an error message
+        if not repositories:
+            error = f"No repositories found for '{query}'"
+        else:
+            error = None
         
         # Pagination
         paginator = Paginator(repositories, 10)  # Show 10 repositories per page
@@ -32,10 +37,11 @@ def search(request):
             repositories = paginator.page(paginator.num_pages)
         
         # Render the results.html template with the repositories, query, and pagination
-        return render(request, 'results.html', {'repositories': repositories, 'query': query})
+        return render(request, 'results.html', {'repositories': repositories, 'query': query, 'error': error})
     else:
         # Render the home.html template if there is no query
         return render(request, 'home.html')
+
 
 
 def repository_details(request, repository_id):

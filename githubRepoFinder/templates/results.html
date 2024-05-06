@@ -8,84 +8,103 @@
         <h2 class="text-2xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-900 to-blue-400">
             Search Results
         </h2>
-        <p class="mt-4 text-md text-gray-400">
-            Results for: <span class='text-lg text-white'>{{ query }}</span>
-        </p>
-        </div>
-    
-        <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {% for repo in repositories %}
-                <div class="bg-gray-800 rounded-lg shadow-lg p-6 transform hover:scale-105 transition duration-300">
-                    <div class="mb-8 pb-8 flex items-center border-b border-gray-600">
-                        <img src="{{ repo.owner.avatar_url }}" alt="User Avatar" class="rounded-full w-20 h-20" />
-                        <div class="ml-5">
-                            <span class="block text-xl font-semibold text-white ">{{ repo.owner.login }}</span>
-                            <span class="font-small text-white">{{ repo.name }}</span>
-                        </div>
-                    </div>                
-                    <ul class="mb-10 font-medium text-xl">
-                        <li class='text-white text-sm'>
-                            <strong class='text-white text-sm'>Name:</strong> {{ repo.name }}<br>
-                            <strong class='text-white text-sm'>Owner:</strong> {{ repo.owner.login }}<br>
-                            <strong class='text-white text-sm'>Description:</strong> {{ repo.description }}<br>
-                            <strong class='text-white text-sm'>Stars:</strong> {{ repo.stargazers_count }}<br>
-                            <strong class='text-white text-sm'>Forks:</strong> {{ repo.forks_count }}<br>
-                            <strong class='text-white text-sm'>URL:</strong> <a href="{{ repo.html_url }}">{{ repo.html_url }}</a><br>
-                        </li>
-                        
-                    </ul>
-                    <div class='fixed bottom-2 z-20 w-full'>
-                        <a href="{% url 'repository_details' repo.id %}" target="_blank"
-                            class="group h-9 relative overflow-hidden bg-gray-600 focus:ring-4 focus:ring-blue-300 inline-flex items-center px-7 py-2.5 rounded-lg text-white justify-center">
-                                <span class="z-40">Show</span>
-                                <svg class="z-40 ml-2 -mr-1 w-3 h-3 transition-all duration-300 group-hover:translate-x-1" fill="currentColor"
-                                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                                    clip-rule="evenodd"></path>
-                                </svg>
-                                <div
-                                    class="absolute inset-0 h-[200%] w-[200%] rotate-45 translate-x-[-70%] transition-all group-hover:scale-100 bg-white/30 group-hover:translate-x-[50%] z-20 duration-1000">
-                                </div>
-                            </a>
-                        </div>
-                </div>
-            {% endfor %}
-        </div>
+        {% if repositories %}
+            <p class="mt-4 text-md text-gray-400">
+                Results for: <span class='text-lg text-white'>{{ query }}</span>
+            </p>
+            </div>
+        
+            <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                {% for repo in repositories %}
+                    <div class="bg-gray-800 rounded-lg shadow-lg p-6 transform hover:scale-105 transition duration-300">
+                        <div class="mb-8 pb-8 flex items-center border-b border-gray-600">
+                            <img src="{{ repo.owner.avatar_url }}" alt="User Avatar" class="rounded-full w-20 h-20" />
+                            <div class="ml-5">
+                                <span class="block text-xl font-semibold text-white ">{{ repo.owner.login }}</span>
+                                <span class="font-small text-white">{{ repo.name }}</span>
+                            </div>
+                        </div>                
+                        <ul class="mb-10 font-medium text-xl">
+                            <li class='text-white text-sm'>
+                                <strong class='text-white text-sm'>Name:</strong> {{ repo.name }}<br>
+                                <strong class='text-white text-sm'>Owner:</strong> {{ repo.owner.login }}<br>
+                                <strong class='text-white text-sm'>Description:</strong> {{ repo.description }}<br>
+                                <strong class='text-white text-sm'>Stars:</strong> {{ repo.stargazers_count }}<br>
+                                <strong class='text-white text-sm'>Forks:</strong> {{ repo.forks_count }}<br>
+                                <strong class='text-white text-sm'>URL:</strong> <a href="{{ repo.html_url }}">{{ repo.html_url }}</a><br>
+                            </li>
+                            
+                        </ul>
+                        <div class='fixed bottom-2 z-20 w-full'>
+                            <a href="{% url 'repository_details' repo.id %}" target="_blank"
+                                class="group h-9 relative overflow-hidden bg-gray-600 focus:ring-4 focus:ring-blue-300 inline-flex items-center px-7 py-2.5 rounded-lg text-white justify-center">
+                                    <span class="z-40">Show</span>
+                                    <svg class="z-40 ml-2 -mr-1 w-3 h-3 transition-all duration-300 group-hover:translate-x-1" fill="currentColor"
+                                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                        d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                                        clip-rule="evenodd"></path>
+                                    </svg>
+                                    <div
+                                        class="absolute inset-0 h-[200%] w-[200%] rotate-45 translate-x-[-70%] transition-all group-hover:scale-100 bg-white/30 group-hover:translate-x-[50%] z-20 duration-1000">
+                                    </div>
+                                </a>
+                            </div>
+                    </div>
+                {% endfor %}
+            </div>
 
-        <div class='flex justify-center m-5'>
-            <ul class="flex">
-            {% if repositories.has_previous %}
-            <li>
-                <a href="?q={{ query }}&page=1" class="mx-1 flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-r from-indigo-500 to-blue-800 p-0 text-sm text-white transition duration-150 ease-in-out hover:from-indigo-300 hover:from-blue-700">
-                <span class="material-icons text-sm">&#x219e;</span>
+            <div class='flex justify-center m-5'>
+                <ul class="flex">
+                {% if repositories.has_previous %}
+                <li>
+                    <a href="?q={{ query }}&page=1" class="mx-1 flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-r from-indigo-500 to-blue-800 p-0 text-sm text-white transition duration-150 ease-in-out hover:from-indigo-300 hover:from-blue-700">
+                    <span class="material-icons text-sm">&#x219e;</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="?q={{ query }}&page={{ repositories.previous_page_number }}" class="mx-1 flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-r from-indigo-500 to-blue-800 p-0 text-sm text-white transition duration-150 ease-in-out hover:from-indigo-300 hover:from-blue-700" aria-label="Previous">
+                    <span class="material-icons text-sm">&#x2190;</span>
+                    </a>
+                </li>
+                {% endif %}
+                <li>
+                    <a href="#" class="mx-1 flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-r from-indigo-300 from-0% via-sky-500 via-30% to-emerald-500 to-90% p-0 text-sm text-white transition duration-150 ease-in-out">
+                        &nbsp;{{ repositories.number }}&nbsp;
+                    </a>
+                </li>           
+                {% if repositories.has_next %}
+                <li>
+                    <a href="?q={{ query }}&page={{ repositories.next_page_number }}" class="mx-1 flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-r from-indigo-500 to-blue-800 p-0 text-sm text-white transition duration-150 ease-in-out hover:from-indigo-300 hover:from-blue-700" aria-label="Next">
+                    <span class="material-icons text-sm">&#x2192;</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="?q={{ query }}&page={{ repositories.paginator.num_pages }}" class="mx-1 flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-r from-indigo-500 to-blue-800 p-0 text-sm text-white transition duration-150 ease-in-out hover:from-indigo-300 hover:from-blue-700" aria-label="Last">
+                    <span class="material-icons text-sm">&#x21a0;</span>
+                    </a>
+                </li>
+                {% endif %}
+                </ul>
+            </div>
+        {% else %}
+            <!-- No repositories found message -->
+            <div class="text-center text-white">
+                <h2 class="text-2xl font-semibold mt-8">No repositories found for "{{ query }}"</h2>
+                <p class="mt-2">Please try a different search query.</p>
+                <a href="/" class="mt-5 relative inline-flex text-slate-300 items-center justify-center leading-normal no-underline pb-1 text-black font-sans font-bold text-md hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-neutral-500 transition group">
+                    Search Again
+                    <svg class="icon icon-tabler icon-tabler-arrow-up-right" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M17 7l-10 10"></path>
+                        <path d="M8 7l9 0l0 9"></path>
+                    </svg>
+                    <span class="absolute bottom-0 left-0 w-full h-0.5 bg-white origin-bottom-right transform transition duration-200 ease-out scale-x-0 group-hover:scale-x-100 group-hover:origin-bottom-left"></span>
                 </a>
-            </li>
-            <li>
-                <a href="?q={{ query }}&page={{ repositories.previous_page_number }}" class="mx-1 flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-r from-indigo-500 to-blue-800 p-0 text-sm text-white transition duration-150 ease-in-out hover:from-indigo-300 hover:from-blue-700" aria-label="Previous">
-                <span class="material-icons text-sm">&#x2190;</span>
-                </a>
-            </li>
-            {% endif %}
-            <li>
-                <a href="#" class="mx-1 flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-r from-indigo-300 from-0% via-sky-500 via-30% to-emerald-500 to-90% p-0 text-sm text-white transition duration-150 ease-in-out">
-                    &nbsp;{{ repositories.number }}&nbsp;
-                </a>
-            </li>           
-            {% if repositories.has_next %}
-            <li>
-                <a href="?q={{ query }}&page={{ repositories.next_page_number }}" class="mx-1 flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-r from-indigo-500 to-blue-800 p-0 text-sm text-white transition duration-150 ease-in-out hover:from-indigo-300 hover:from-blue-700" aria-label="Next">
-                <span class="material-icons text-sm">&#x2192;</span>
-                </a>
-            </li>
-            <li>
-                <a href="?q={{ query }}&page={{ repositories.paginator.num_pages }}" class="mx-1 flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-r from-indigo-500 to-blue-800 p-0 text-sm text-white transition duration-150 ease-in-out hover:from-indigo-300 hover:from-blue-700" aria-label="Last">
-                <span class="material-icons text-sm">&#x21a0;</span>
-                </a>
-            </li>
-            {% endif %}
-            </ul>
-        </div>
+            </div>
+        {% endif %}
+
+        
     </div>
   </section>
 
