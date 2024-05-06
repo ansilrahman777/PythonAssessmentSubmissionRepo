@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+{% block title %}Repository Details{% endblock title %}
+
+{% block body %}
+<section class="bg-transparent py-2 mb-5">
+    <div class="max-w-6xl mt-2 mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-2">
+            <h2 class="text-2xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-900 to-blue-400">
+                Repository Details
+            </h2>
+        </div>
+
+        <div class="bg-gray-800 rounded-lg shadow-lg mb-9 p-4 transform transition duration-300">
+            <div class="mb-2 flex items-center">
+                <img src="{{ repository.owner.avatar_url }}" alt="User Avatar" class="rounded-full w-20 h-20" />
+                <div class="ml-5">
+                    <span class="text-2xl font-semibold text-white ">{{ repository.owner.login }}</span>
+                    <span class="text-white text-2xl">/</span>
+                    <a href={{ repository.html_url }}>
+                        <span class="font-small text-white">{{ repository.name }}</span>
+                    </a>
+                </div>
+            </div>   
+            <div class='flex'>
+                <div x-data="{ openTab: 1 }" class="flex w-full">
+                    <div class="mx-auto w-full">
+                        <div class="mb-4  flex space-x-4 p-2 bg-gray-900 rounded-lg shadow-md">
+                            <button x-on:click="openTab = 1" :class="{ 'bg-gray-800 text-white': openTab === 1 }" class="flex px-2 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300">Code</button>
+                            <button class="flex px-2 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300">Pull Request</button>
+                            <button class="flex px-2 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300">Action</button>
+                            <button class="flex px-2 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300">Projects</button>
+                            <button class="flex px-2 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300">Wiki</button>
+                            <button class="flex px-2 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300">Secutity</button>
+                            <button class="flex px-2 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300">Insight</button>
+                            <button class="flex px-2 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300">Settings</button>
+                        </div>
+                        
+                        <div class='flex'>
+                            <div x-show="openTab === 1" class="w-3/4 transition-all duration-300 bg-gray-900 p-4 rounded-lg shadow-md ">
+                                <div class='flex justify-between'>
+                                    <h2 class="text-2xl font-semibold mb-2 text-white">{{ repository.name }} &nbsp;<span class="bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-gray-700 dark:text-gray-300">{{ repository.visibility }}</span></h2>
+                                    <button class="bg-green-600 px-2 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300 font-bold"><i class="fa-solid fa-code"></i>&nbsp;code</button>
+
+                                </div>
+
+                                <div role="status" class="mt-2 space-y-2.5 animate-pulse">
+                                    <div class="flex items-center w-full">
+                                        <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-32"></div>
+                                        <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-24"></div>
+                                        <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-full"></div>
+                                    </div>
+                                    <div class="flex items-center w-fullmax-w-[360px]">
+                                        <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full"></div>
+                                                <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-full"></div>
+                                        <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-24"></div>
+                                    </div>
+                                    <div class="flex items-center w-full ">
+                                        <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-full"></div>
+                                        <div class="h-2.5 ms-2 bg-gray-200 rounded-full dark:bg-gray-700 w-80"></div>
+                                        <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-full"></div>
+                                    </div>
+                                    <div class="flex items-center w-full max-w-[480px]">
+                                        <div class="h-2.5 ms-2 bg-gray-200 rounded-full dark:bg-gray-700 w-full"></div>
+                                                <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-full"></div>
+                                        <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-24"></div>
+                                    </div>
+                                    <div class="flex items-center w-full ">
+                                        <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-32"></div>
+                                        <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-24"></div>
+                                        <div class="h-2.5 ms-2 bg-gray-200 rounded-full dark:bg-gray-700 w-full"></div>
+                                    </div>
+                                    <div class="flex items-center w-full max-w-[360px]">
+                                        <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-full"></div>
+                                        <div class="h-2.5 ms-2 bg-gray-200 rounded-full dark:bg-gray-700 w-80"></div>
+                                        <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-full"></div>
+                                    </div>
+                                    <span class="sr-only">Loading...</span>
+                                </div> 
+
+                                <div role="status" class="mt-2 space-y-2.5 animate-pulse ">
+                                    <div class="flex items-center w-full">
+                                        <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-32"></div>
+                                        <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-24"></div>
+                                        <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-full"></div>
+                                    </div>
+                                    <div class="flex items-center w-full max-w-[480px]">
+                                        <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full"></div>
+                                                <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-full"></div>
+                                        <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-24"></div>
+                                    </div>
+                                    <div class="flex items-center w-full max-w-[400px]">
+                                        <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-full"></div>
+                                        <div class="h-2.5 ms-2 bg-gray-200 rounded-full dark:bg-gray-700 w-80"></div>
+                                        <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-full"></div>
+                                    </div>
+                                    <div class="flex items-center w-full max-w-[480px]">
+                                        <div class="h-2.5 ms-2 bg-gray-200 rounded-full dark:bg-gray-700 w-full"></div>
+                                                <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-full"></div>
+                                        <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-24"></div>
+                                    </div>
+                                    <div class="flex items-center w-full max-w-[440px]">
+                                        <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-32"></div>
+                                        <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-24"></div>
+                                        <div class="h-2.5 ms-2 bg-gray-200 rounded-full dark:bg-gray-700 w-full"></div>
+                                    </div>
+                                    <div class="flex items-center w-full max-w-[360px]">
+                                        <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-full"></div>
+                                        <div class="h-2.5 ms-2 bg-gray-200 rounded-full dark:bg-gray-700 w-80"></div>
+                                        <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-full"></div>
+                                    </div>
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+
+                                <div role="status" class="mt-2 space-y-2.5 animate-pulse">
+                                    <div class="flex items-center w-full">
+                                        <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-32"></div>
+                                        <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-24"></div>
+                                        <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-full"></div>
+                                    </div>
+                                    <div class="flex items-center w-full max-w-[480px]">
+                                        <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full"></div>
+                                                <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-full"></div>
+                                        <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-24"></div>
+                                    </div>
+                                    <div class="flex items-center w-full ">
+                                        <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-full"></div>
+                                        <div class="h-2.5 ms-2 bg-gray-200 rounded-full dark:bg-gray-700 w-80"></div>
+                                        <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-full"></div>
+                                    </div>
+                                    <div class="flex items-center w-full max-w-[480px]">
+                                        <div class="h-2.5 ms-2 bg-gray-200 rounded-full dark:bg-gray-700 w-full"></div>
+                                                <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-full"></div>
+                                        <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-24"></div>
+                                    </div>
+                                    <div class="flex items-center w-full">
+                                        <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-32"></div>
+                                        <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-24"></div>
+                                        <div class="h-2.5 ms-2 bg-gray-200 rounded-full dark:bg-gray-700 w-full"></div>
+                                    </div>
+                                    <div class="flex items-center w-full max-w-[360px]">
+                                        <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-full"></div>
+                                        <div class="h-2.5 ms-2 bg-gray-200 rounded-full dark:bg-gray-700 w-80"></div>
+                                        <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-full"></div>
+                                    </div>
+                                    <div class="flex items-center w-full">
+                                        <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-32"></div>
+                                        <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-24"></div>
+                                        <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-full"></div>
+                                    </div>
+                                    <span class="sr-only">Loading...</span>
+                                </div>                              
+                            </div>
+                            
+                            <div class="w-1/4 ml-3 transition-all text-white duration-300 bg-gray-900 p-4 rounded-lg shadow-md ">
+                                <h2 class='text-white'>About</h2>
+                                <p class='mt-2 text-white'>{{ repository.description }}</p>
+                                <div class='flex flex-col gap-y-4 mt-6'>
+                                    <i class="fa-solid fa-wave-square"><span class='ml-2 font-sans text-sm font-normal'>Activity</span></i>
+                                    <i class="fa-regular fa-star"><span class='ml-2 font-sans text-md font-normal'>{{ repository.stargazers_count }}&nbsp;Stars</span></i>
+                                    <i class="fa-solid fa-eye"><span class='ml-2 font-sans text-md font-normal'>{{ repository.watchers_count }}&nbsp;Watching</span></i>
+                                    <i class="fa-solid fa-code-branch text-md"><span class='ml-2 font-sans text-md font-normal'>{{ repository.forks_count }}&nbsp;Fork</span></i>
+                                </div>
+                                <div class='flex flex-col gap-y-4 mt-6'>
+                                    Language : {{ repository.language }}
+                                </div>
+
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>           
+        </div>
+    </div>
+    
+</section>
+{% endblock body %}
+

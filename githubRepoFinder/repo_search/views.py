@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .utils import search_repositories
+from .utils import search_repositories, get_repository_details
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # View function for rendering the home page
@@ -35,3 +35,9 @@ def search(request):
         # Render the home.html template if there is no query
         return render(request, 'home.html')
 
+def repository_details(request, repository_id):
+    # Get details of the repository by its ID
+    repository = get_repository_details(repository_id)
+    
+    # Render the repository_details.html template with the repository details
+    return render(request, 'repos_details.html', {'repository': repository})

@@ -39,3 +39,18 @@ def search_repositories(query):
         # Log and handle request errors
         print("Error:", e)
         return []
+
+def get_repository_details(repository_id):
+
+    url = f'https://api.github.com/repositories/{repository_id}'
+
+    headers = {'Authorization': f'token {GITHUB_TOKEN}'}
+
+    try:
+        response = requests.get(url, headers=headers)
+        response.raise_for_status()
+        repository = response.json()
+        return repository
+    except requests.exceptions.RequestException as e:
+        print("Error:", e)
+        return None
