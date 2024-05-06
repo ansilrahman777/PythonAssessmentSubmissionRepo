@@ -26,13 +26,15 @@
                     <div class="mx-auto w-full">
                         <div class="mb-4  flex space-x-4 p-2 bg-gray-900 rounded-lg shadow-md">
                             <button x-on:click="openTab = 1" :class="{ 'bg-gray-800 text-white': openTab === 1 }" class="flex px-2 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300">Code</button>
-                            <button class="flex px-2 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300">Pull Request</button>
-                            <button class="flex px-2 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300">Action</button>
-                            <button class="flex px-2 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300">Projects</button>
-                            <button class="flex px-2 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300">Wiki</button>
-                            <button class="flex px-2 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300">Secutity</button>
-                            <button class="flex px-2 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300">Insight</button>
-                            <button class="flex px-2 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300">Settings</button>
+                            <button class="flex px-2 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300 text-white">Pull Request</button>
+                            <button class="flex px-2 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300 text-white">Action</button>
+                            <button class="flex px-2 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300 text-white">Projects</button>
+                            <button class="flex px-2 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300 text-white">Projects</button>
+                            <button class="flex px-2 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300 text-white">Projects</button>
+                            <button class="flex px-2 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300 text-white">Wiki</button>
+                            <button class="flex px-2 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300 text-white">Secutity</button>
+                            <button class="flex px-2 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300 text-white">Insight</button>
+                            <button class="flex px-2 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300 text-white">Settings</button>
                         </div>
                         
                         <div class='flex'>
@@ -148,9 +150,11 @@
                                         <div class="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-full"></div>
                                     </div>
                                     <span class="sr-only">Loading...</span>
-                                </div>                              
+                                </div>   
+
+                                <p class='text-white'>Updated at : {{repository.updated_at}} </p>
+                                {{repository}}                           
                             </div>
-                            
                             <div class="w-1/4 ml-3 transition-all text-white duration-300 bg-gray-900 p-4 rounded-lg shadow-md ">
                                 <h2 class='text-white'>About</h2>
                                 <p class='mt-2 text-white'>{{ repository.description }}</p>
@@ -165,7 +169,6 @@
                                 </div>
 
                             </div>
-                            
                         </div>
                     </div>
                 </div>
