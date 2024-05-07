@@ -1,12 +1,9 @@
 import os
 from dotenv import load_dotenv
 import requests
+from django.conf import settings 
 
-# Load environment variables from .env file
-load_dotenv()
 
-# Retrieve GitHub token from environment variables
-GITHUB_TOKEN = os.getenv('GITHUB_TOKEN')
 
 # Function to search repositories on GitHub using the provided query
 def search_repositories(query):
@@ -15,7 +12,7 @@ def search_repositories(query):
     url = 'https://api.github.com/search/repositories'
     
     # Set authorization headers with GitHub token
-    headers = {'Authorization': f'token {GITHUB_TOKEN}'} 
+    headers = {'Authorization': f'token {settings.GITHUB_TOKEN}'} 
     
     # Define search parameters
     params = {'q': query,'per_page': 500}
