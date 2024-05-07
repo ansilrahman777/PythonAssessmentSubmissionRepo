@@ -41,7 +41,7 @@ def get_repository_details(repository_id):
 
     url = f'https://api.github.com/repositories/{repository_id}'
 
-    headers = {'Authorization': f'token {GITHUB_TOKEN}'}
+    headers = {'Authorization': f'token {settings.GITHUB_TOKEN}'}
 
     try:
         response = requests.get(url, headers=headers)
