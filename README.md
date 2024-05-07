@@ -12,4 +12,4 @@ Welcome to the GitHub Repository Search App! This web application allows users t
 
 - Django: Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design.
 - GitHub API: The app utilizes GitHub API to fetch repository data and information.
-- HTML & TAILWIND CSS: Frontend development is done using HTML,TAILWIND CSS for interactive features.
+- HTML & TAILWIND CSS: Frontend development is done using HTML,TAILWIND CSS for for building custom designs.
